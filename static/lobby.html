@@ -1,0 +1,45 @@
+<!DOCTYPE html>  
+<html lang="es">  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/styles.css">
+    <title>Lobby</title>
+</head>  
+<body>
+    <header class="header">
+        <h1>Error 404</h1>
+    </header>
+    <hr>
+    <div class="imagen-portero">
+        <img id="iportero" src="https://img.freepik.com/fotos-premium/conectando-personas-internet-transformando-nodos_250994-89.jpg" alt="Imagen del videoportero" />
+    </div>
+    <div class="botones">
+        <button class="boton" onclick="llave()"><img width="50" height="50" src="https://img.icons8.com/windows/32/key.png" alt="key"/></button>
+        <button class="boton" onclick="microfono()"><img width="50" height="50" src="https://img.icons8.com/fluency-systems-regular/50/microphone--v1.png" alt="microphone--v1"/></button>
+        <button class="boton" onclick="bocina()"><img width="50" height="50" src="https://img.icons8.com/ios/50/speaker.png" alt="speaker"/></button>
+        <button class="boton" onclick="camara()"><img width="50" height="50" src="https://img.icons8.com/ios/50/camera--v1.png" alt="camera--v1"/></button>
+    </div>
+    <script>
+        var ws = new WebSocket(`ws://${window.location.host}/ws`);
+        ws.onmessage = function(event) {
+            if (!(typeof(event.data) === 'string')){
+                var imagen = document.getElementById('iportero')
+                imagen.setAttribute("src", event.data)
+            }
+        };
+        function llave(event) {
+            ws.send("a")
+        }
+        function bocina(event) {
+            ws.send("b")
+        }
+        function microfono(event) {
+            ws.send("m")
+        }
+        function camara(event) {
+            console.log("foto tomada")
+        }
+    </script>  
+</body>  
+</html> 
