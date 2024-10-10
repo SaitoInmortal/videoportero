@@ -11,9 +11,4 @@
       "dest": "main.py"
     }
   ]
-  "git": {
-    "deploymentEnabled": {
-      "main": false
-    }
-  }
 }
